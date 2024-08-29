@@ -28,6 +28,10 @@ UserSchema.pre("save", async function(next) {
     }
 });
 
+UserSchema.methods.comparePassword = function (userPassword) {
+    return bcrypt.compare(userPassword, this.password);
+}
+
 UserSchema.methods.createToken = function() {
     const payload = {
         id: this._id,
