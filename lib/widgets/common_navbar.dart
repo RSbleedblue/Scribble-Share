@@ -10,12 +10,13 @@ class CommonNavbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      centerTitle: true,
+      centerTitle: label == "Home" ? false : true,
       title: Text(
         label,
         style:const TextStyle(color: navyBlueColor, fontWeight: FontWeight.bold),
       ),
-      leading: Padding(
+      automaticallyImplyLeading: label == "Home" ? false : true,
+      leading: label == "Home" ? null : Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
             decoration: BoxDecoration(

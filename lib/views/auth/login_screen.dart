@@ -83,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           String? result = await context.read<LoginProvider>().loginUser(
+                                context,
                                 _emailController.text,
                                 _passwordController.text,
                               );

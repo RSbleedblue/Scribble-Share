@@ -19,16 +19,17 @@ class LoginProvider extends ChangeNotifier{
     }
   }
 
-  Future<String> loginUser(String email, String password) async {
+  Future<String> loginUser(BuildContext context, String email, String password) async {
     try{
       final response = await loginService.loginUser(email, password);
       if(response.statusCode == 200){
         _token = jsonDecode(response.body)['token'];
         print(_token);
         notifyListeners();
-        return jsonDecode(response.body)['success'];
+        Navigator.pushNamed(context, "/home");
+        return "Success";
       }
-      return response.body;
+      return "Error";
     }
     catch (err){
       return err.toString();
