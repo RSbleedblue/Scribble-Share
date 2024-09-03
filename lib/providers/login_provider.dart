@@ -6,8 +6,10 @@ import 'package:scribble_share/services/login_service.dart';
 class LoginProvider extends ChangeNotifier{
   final loginService = LoginService();
   String? _token;
+  String? _userId;
 
   String? get token => _token;
+  String? get userId => _userId;
 
   Future<String> registerUser(String username, String email, String password) async {
     try{
@@ -24,6 +26,7 @@ class LoginProvider extends ChangeNotifier{
       final response = await loginService.loginUser(email, password);
       if(response.statusCode == 200){
         _token = jsonDecode(response.body)['token'];
+        _userId = jsonDecode(response.body)['user'];
         print(_token);
         notifyListeners();
         Navigator.pushNamed(context, "/home");

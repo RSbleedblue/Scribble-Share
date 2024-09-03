@@ -51,6 +51,7 @@ class UserController {
             return res.status(200).json({
                 message: "User successfully logged in",
                 token: token,
+                user : findUser.id,
                 success: true
             });
         } catch (err) {
